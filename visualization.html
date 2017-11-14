@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Quiz | Everyday Injustices</title>
+		<meta name="description" content="For the Everyday Injustices" />
+		<meta name="keywords" content="injustice, micro, aggression, harrassment, everyday" />
+		<meta name="author" content="Stephanie Lee" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/bottom-area.css" />
+		<script src="js/modernizr.custom.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<!-- Top Navigation -->
+			<div class="codrops-top clearfix">
+				<span class="right"><a class="fa fa-shopping-cart" href="/webshop/index.html"><span>&nbsp;&nbsp;Collectables</span></a></span>
+			</div>
+			<div class="content">
+				<header class="codrops-header">
+					<h1>How much do your every day injustices weigh?
+						<span>Join on your phone at microjustice.co
+						</span>
+					</h1>
+
+				</header>
+				<div id="grid" class="grid clearfix">
+					<div class="grid__item"><img class='ma' src='img/ma-00.png'></img></div>
+					<!-- <form id="myform" class="fs-form fs-form-full" autocomplete="off">
+					<ol class="fs-fields">
+						<li>
+							<label class="fs-field-label fs-anim-upper" for="q1">What's your name?</label>
+							<input class="fs-anim-lower" id="q1" name="q1" type="text" placeholder="Dean Moriarty" required/>
+						</li>
+						<li data-input-trigger>
+							<label class="fs-field-label fs-anim-upper" for="q3" data-info="This will help us know what kind of service you need">Have you ever</label>
+							<div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
+								<span><input id="q3b" name="q3" type="radio" value="conversion"/><label for="q3b" class="radio-conversion">Experienced this</label></span>
+								<span><input id="q3c" name="q3" type="radio" value="social"/><label for="q3c" class="radio-social">Contributed to this</label></span>
+								<span><input id="q3a" name="q3" type="radio" value="mobile"/><label for="q3a" class="radio-mobile">Noticed this</label></span>
+							</div>
+						</li>
+					</ol>
+				</form> -->
+					<div class="grid__item"><img class='ma' src='img/ma-01.png'></img></div>
+					<div class="grid__item"><img class='ma' src='img/ma-02.png'></img></div>
+					<div class="grid__item"><img class='ma' src='img/ma-03.png'></img></div>
+					<div class="grid__item"><img class='ma' src='img/ma-04.png'></img></div>
+					<div class="grid__item"><img class='ma' src='img/ma-05.png'></img></div>
+					<div class="grid__item"><img class='ma' src='img/ma-06.png'></img></div>
+					<div class="grid__item"><img class='ma' src='img/ma-07.png'></img></div>
+					<div class="grid__item"><img class='ma' src='img/ma-08.png'></img></div>
+					<div class="grid__item"><img class='ma' src='img/ma-09.png'></img></div>
+					<div class="grid__item"><img class='ma' src='img/ma-10.png'></img></div>
+					<div class="grid__item"><img class='ma' src='img/ma-11.png'></img></div>
+					<div class="grid__item"><img class='ma' src='img/ma-12.png'></img></div>
+					<div class="grid__item"><img class='ma' src='img/ma-13.png'></img></div>
+					<div class="grid__item"><img class='ma' src='img/ma-14.png'></img></div>
+					<div class="grid__item"><img class='ma' src='img/ma-15.png'></img></div>
+			</div><!-- /content -->
+		</div><!-- /container -->
+		<div id="drop-area" class="drop-area">
+			<div>
+				<div class="drop-area__item"><div class="dummy"></div></div>
+				<div class="drop-area__item"><div class="dummy"></div></div>
+				<div class="drop-area__item"><div class="dummy"></div></div>
+				<div class="drop-area__item"><div class="dummy"></div></div>
+			</div>
+		</div>
+		<div class="drop-overlay"></div>
+		<script src="js/draggabilly.pkgd.min.js"></script>
+		<script src="js/dragdrop.js"></script>
+		<script>
+			(function() {
+				var body = document.body,
+					dropArea = document.getElementById( 'drop-area' ),
+					droppableArr = [], dropAreaTimeout;
+
+				// initialize droppables
+				[].slice.call( document.querySelectorAll( '#drop-area .drop-area__item' )).forEach( function( el ) {
+					droppableArr.push( new Droppable( el, {
+						onDrop : function( instance, draggableEl ) {
+							// show checkmark inside the droppabe element
+							classie.add( instance.el, 'drop-feedback' );
+							clearTimeout( instance.checkmarkTimeout );
+							instance.checkmarkTimeout = setTimeout( function() {
+								classie.remove( instance.el, 'drop-feedback' );
+							}, 800 );
+							// ...
+						}
+					} ) );
+				} );
+
+				// initialize draggable(s)
+				[].slice.call(document.querySelectorAll( '#grid .grid__item' )).forEach( function( el ) {
+					new Draggable( el, droppableArr, {
+						draggabilly : { containment: document.body },
+						onStart : function() {
+							// add class 'drag-active' to body
+							classie.add( body, 'drag-active' );
+							// clear timeout: dropAreaTimeout (toggle drop area)
+							clearTimeout( dropAreaTimeout );
+							// show dropArea
+							classie.add( dropArea, 'show' );
+						},
+						onEnd : function( wasDropped ) {
+							var afterDropFn = function() {
+								// hide dropArea
+								classie.remove( dropArea, 'show' );
+								// remove class 'drag-active' from body
+								classie.remove( body, 'drag-active' );
+							};
+
+							if( !wasDropped ) {
+								afterDropFn();
+							}
+							else {
+								// after some time hide drop area and remove class 'drag-active' from body
+								clearTimeout( dropAreaTimeout );
+								dropAreaTimeout = setTimeout( afterDropFn, 400 );
+							}
+						}
+					} );
+				} );
+			})();
+		</script>
+	</body>
+</html>
